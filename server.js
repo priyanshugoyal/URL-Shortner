@@ -42,6 +42,13 @@ app.route('/')
 app.get('/new/:urlToShorten(*)',function(req,res)
         {
   var urlToShorten=req.params.urlToShorten;
+  var expression=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+  if(expression.test(urlToShorten)===true)
+  {
+    return 'Works';
+  }
+  else
+    return 'DoesNOt';
   
   
 });
