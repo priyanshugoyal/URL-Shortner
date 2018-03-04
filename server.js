@@ -39,7 +39,7 @@ app.route('/')
     .get(function(req, res) {
 		  res.sendFile(process.cwd() + '/views/index.html');
     })
-app.get('/new/:urlToShorten(*)',function(req,res)
+app.get('/new/:urlToShorten(*)',function(req,res,next)
         {
   var urlToShorten=req.params.urlToShorten;
   var expression=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
@@ -62,9 +62,10 @@ app.get('/new/:urlToShorten(*)',function(req,res)
     res.json({'error':'invalid url'});
   
 });
-app.get('/:urlToForward',function(req,res)
+app.get('/ul/:urlToForward(*)',function(req,res,next)
         {
   var shorterUrl=req.params.urlToForward;
+  console.log(shorterUrl);
   ShortUrl.findOne({'shortURL':shorterUrl},(err,data)=>
                    {
     console.log(data);
