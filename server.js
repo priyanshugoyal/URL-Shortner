@@ -43,13 +43,13 @@ app.get('/new/:urlToShorten(*)',function(req,res,next)
         {
   var urlToShorten=req.params.urlToShorten;
   var expression=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
-  var eqn='';
+  var randomNumber=Math.floor(Math.random()*10000).toString();
   if(expression.test(urlToShorten)===true)
   {
     var data=new ShortUrl(
       {
         originalURL:urlToShorten,
-        shortURL:'short'
+        shortURL:randomNumber
       });
    data.save(function(err, ShortUrl){
          if(err)
@@ -62,7 +62,7 @@ app.get('/new/:urlToShorten(*)',function(req,res,next)
     res.json({'error':'invalid url'});
   
 });
-app.get('/:urlToForward(*)',function(req,res,next)
+app.get('/:urlToForward',function(req,res,next)
         {
   var shorterUrl=req.params.urlToForward;
   console.log(shorterUrl);
@@ -71,8 +71,8 @@ app.get('/:urlToForward(*)',function(req,res,next)
     console.log(data);
     if(data==null)
       res.send('error in retriving');
-    //else
-      //res.redirect(301,data.originalURL);
+    else
+    res.redirect(301,data.originalURL);
   });
 });
 
