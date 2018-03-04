@@ -49,7 +49,7 @@ app.get('/new/:urlToShorten(*)',function(req,res)
     var data=new ShortUrl(
       {
         originalURL:urlToShorten,
-        ShortURL:'short'
+        shortURL:'short'
       });
    data.save(function(err, ShortUrl){
          if(err)
@@ -65,9 +65,10 @@ app.get('/new/:urlToShorten(*)',function(req,res)
 app.get('/:urlToForward',function(req,res)
         {
   var shorterUrl=req.params.urlToForward;
-  ShortUrl.findOne({'ShortURL':shorterUrl},(err,data)=>
+  ShortUrl.findOne({'shortURL':shorterUrl},(err,data)=>
                    {
-    if(err)
+    console.log(data);
+    if(data==null)
       res.send('error in retriving');
     else
       res.redirect(301,data.originalURL);
