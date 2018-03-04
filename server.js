@@ -49,7 +49,7 @@ app.get('/new/:urlToShorten(*)',function(req,res)
     var data=new ShortUrl(
       {
         originalURL:urlToShorten,
-        shortURL:'123'
+        ShortURL:'short'
       });
    data.save(function(err, ShortUrl){
          if(err)
@@ -59,7 +59,12 @@ app.get('/new/:urlToShorten(*)',function(req,res)
     res.json(data);
   }
   else
-    res.json({'error':'invalid uls'});
+    res.json({'error':'invalid url'});
+  
+});
+app.get('/:urlToForward',function(req,res)
+        {
+  var shortUrl=req.params.urlToForward;
   
 });
 

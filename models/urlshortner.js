@@ -1,7 +1,7 @@
 var mongoose=require('mongoose');
 var schema = mongoose.Schema({
    originalURL: String,
-   ShortURL: Number,
+   ShortURL: String
 });
 var modelClass = mongoose.model("ShortUrl", schema);
 module.exports=modelClass;
