@@ -75,6 +75,7 @@ app.get('/:urlToForward',function(req,res,next)
     {
       var re=new RegExp('^(http|https)://','i');
       var str=data.originalUrl;
+      console.log(str);
       if(re.test(str)){
     res.redirect(301,data.originalURL);}
       else
