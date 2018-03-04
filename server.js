@@ -9,7 +9,7 @@ var fs = require('fs');
 var express = require('express');
 var app = express();
 var mongoose=require('mongoose');
-const urlshortner=require('./models/urlshortner');
+const urlshortner=require('./models/urlshortner.js');
 if (!process.env.DISABLE_XORIGIN) {
   app.use(function(req, res, next) {
     var allowedOrigins = ['https://narrow-plane.gomix.me', 'https://www.freecodecamp.com'];
@@ -46,11 +46,12 @@ app.get('/new/:urlToShorten(*)',function(req,res)
   var eqn='';
   if(expression.test(urlToShorten)===true)
   {
-    
+    var data=new urlshortner(
+      {
+      });
   }
   else
-    eqn= 'DoesNOt';
-  res.send(eqn);
+    res.json({'error':'invalid uls'});
   
 });
 
