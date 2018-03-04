@@ -64,8 +64,14 @@ app.get('/new/:urlToShorten(*)',function(req,res)
 });
 app.get('/:urlToForward',function(req,res)
         {
-  var shortUrl=req.params.urlToForward;
-  
+  var shorterUrl=req.params.urlToForward;
+  ShortUrl.findOne({'ShortURL':shorterUrl},(err,data)=>
+                   {
+    if(err)
+      res.send('error in retriving');
+    else
+      res.redirect(301,data.originalURL);
+  });
 });
 
 // Respond not found to all the wrong routes
