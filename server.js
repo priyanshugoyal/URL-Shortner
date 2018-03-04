@@ -72,7 +72,10 @@ app.get('/:urlToForward',function(req,res,next)
     if(data==null)
       res.send('error in retriving');
     else
+    {
+      var re=new Re
     res.redirect(301,data.originalURL);
+    }
   });
 });
 
