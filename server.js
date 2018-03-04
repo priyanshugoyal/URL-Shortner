@@ -62,7 +62,7 @@ app.get('/new/:urlToShorten(*)',function(req,res,next)
     res.json({'error':'invalid url'});
   
 });
-app.get('/ul/:urlToForward(*)',function(req,res,next)
+app.get('/:urlToForward(*)',function(req,res,next)
         {
   var shorterUrl=req.params.urlToForward;
   console.log(shorterUrl);
@@ -71,8 +71,8 @@ app.get('/ul/:urlToForward(*)',function(req,res,next)
     console.log(data);
     if(data==null)
       res.send('error in retriving');
-    else
-      res.redirect(301,data.originalURL);
+    //else
+      //res.redirect(301,data.originalURL);
   });
 });
 
