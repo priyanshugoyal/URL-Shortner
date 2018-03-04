@@ -66,15 +66,19 @@ app.get('/:urlToForward',function(req,res,next)
         {
   var shorterUrl=req.params.urlToForward;
   console.log(shorterUrl);
-  ShortUrl.findOne({'shortURL':shorterUrl},(err,data)=>
+  ShortUrl.findOne({'shortURL':shorterUrl},function (err,data)
                    {
     console.log(data);
-    if(data==null)
+    if(err)
       res.send('error in retriving');
     else
     {
-      var re=new Re
-    res.redirect(301,data.originalURL);
+      var re=new RegExp('^(http|https)://','i');
+      var str=data.originalUrl;
+      if(re.test(str)){
+    res.redirect(301,data.originalURL);}
+      else
+      {res.redirect(301,'http://'+data.originalUrl);}
     }
   });
 });
