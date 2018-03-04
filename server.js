@@ -33,7 +33,7 @@ app.route('/_api/package.json')
       res.type('txt').send(data.toString());
     });
   });
-var dbURL='mongodb://'+process.env.USER+':'+process.env.PASSWORD+'@'+process.env.HOST+':'+process.env.PORT+'/'+process.env.DB;
+var dbURL='mongodb://'+process.env.USER+':'+process.env.PASSWORD+'@'+process.env.HOST+':'+process.env.DBPORT+'/'+process.env.DB;
 mongoose.connect(dbURL);
 app.route('/')
     .get(function(req, res) {
@@ -46,7 +46,7 @@ app.get('/new/:urlToShorten(*)',function(req,res)
   var eqn='';
   if(expression.test(urlToShorten)===true)
   {
-    eqn= 'Works';
+    
   }
   else
     eqn= 'DoesNOt';
