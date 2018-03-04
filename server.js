@@ -33,14 +33,16 @@ app.route('/_api/package.json')
       res.type('txt').send(data.toString());
     });
   });
-var dbURL='mongodb://'+<dbuser>:<dbpassword>@ds249798.mlab.com:49798/urlshortner
-  
+var dbURL='mongodb://'+process.env.USER+':'+process.env.PASSWORD+'@'+process.env.HOST+':'+process.env.PORT+'/'+process.env.DB;
+mongoose.connect(dbURL);
 app.route('/')
     .get(function(req, res) {
 		  res.sendFile(process.cwd() + '/views/index.html');
     })
 app.get('/new/:urlToShorten(*)',function(req,res)
         {
+  var urlToShorten=req.params.urlToShorten;
+  
   
 });
 
