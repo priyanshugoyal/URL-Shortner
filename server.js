@@ -39,16 +39,17 @@ app.route('/')
     .get(function(req, res) {
 		  res.sendFile(process.cwd() + '/views/index.html');
     })
-app.get('/new/:urlToShorten(*)',function(req,res)
+app.get('/new/:urlToShorten(*)',function(req,res,next)
         {
   var urlToShorten=req.params.urlToShorten;
-  var expression=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+  var expression=/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+  var eqn
   if(expression.test(urlToShorten)===true)
   {
-    return 'Works';
+    eqn= 'Works';
   }
   else
-    return 'DoesNOt';
+    eqn= 'DoesNOt';
   
   
 });
